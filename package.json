@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.1.9",
+    "@codemirror/view": "^6.13.0",
+    "@uiw/codemirror-theme-github": "^4.21.2",
+    "@uiw/react-codemirror": "^4.21.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.12.1"

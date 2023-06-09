@@ -10,7 +10,7 @@ const AuthNavbar = () => {
             <Link to="/">snipz</Link>
           </h1>
         </div>
-        <div className="h-full">
+        {/* <div className="h-full">
           <ul className="flex gap-5 h-full">
             <li className="cursor-pointer flex items-center">
               <Link to="/auth/login">Login</Link>
@@ -19,7 +19,7 @@ const AuthNavbar = () => {
               <Link to="/auth/register">Register</Link>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   )
