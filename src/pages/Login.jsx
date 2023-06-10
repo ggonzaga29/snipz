@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 const Login = () => {
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="mt-10">
+      <div className="mt-10 w-full px-5">
         <div>
           <h1 className="text-5xl font-bold text-center">
             <Link to="/">snipz</Link>
           </h1>
         </div>
-        <div className="dark:bg-slate-700 p-12 mt-10">
+        <div className="dark:bg-slate-700 p-12 mt-10 mx-auto max-w-xl">
           <h2 className="text-2xl text-center font-bold ">Welcome Back!</h2>
           {/* Inputs */}
           <div className="mt-6">

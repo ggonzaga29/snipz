@@ -8,11 +8,123 @@
 	}
 }
 
-.cm-editor {
-	font-family: "Fira Code" !important;
-	font-size: 16px;
+:root {
+  color-scheme: dark;
 }
 
-.cm-gutters {
+.container {
+	@apply max-w-6xl mx-auto px-4;
+}
+
+.cm-content {
+	font-family: 'Fira Code' !important;
+	font-size: 16px !important;
+	height: auto !important;
+}
+
+.cm-line {
+}
+
+.code-preview.cm-gutters {
 	display: none !important;
+}
+
+.Markdown h1 {
+	font-size: 2em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.Markdown h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.Markdown h3 {
+	font-size: 1.17em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.Markdown h4 {
+	font-size: 1em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.Markdown h5 {
+	font-size: 0.83em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.Markdown h6 {
+	font-size: 0.67em;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.Markdown p {
+	margin-bottom: 1em;
+}
+
+.Markdown strong {
+	font-weight: bold;
+}
+
+.Markdown em {
+	font-style: italic;
+}
+
+.Markdown del {
+	text-decoration: line-through;
+}
+
+.Markdown a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.Markdown ul {
+	margin-bottom: 1em;
+	padding-left: 2em;
+}
+
+.Markdown ul li {
+	margin-bottom: 0.5em;
+}
+
+.Markdown ol {
+	margin-bottom: 1em;
+	padding-left: 2em;
+}
+
+.Markdown ol li {
+	margin-bottom: 0.5em;
+}
+
+.Markdown blockquote {
+	margin-left: 1em;
+	padding-left: 1em;
+	border-left: 3px solid #ddd;
+}
+
+.Markdown pre {
+	background-color: #f7f7f7;
+	padding: 0.5em;
+	overflow: auto;
+}
+
+.Markdown code {
+	font-family: 'Courier New', Courier, monospace;
+	background-color: #f7f7f7;
+	color: #333;
+	padding: 0.1em 0.3em;
+	border-radius: 3px;
+}
+
+.Markdown img {
+	max-width: 100%;
+	height: auto;
 }
