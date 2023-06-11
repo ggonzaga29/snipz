@@ -1,82 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import CodeMirror from '@uiw/react-codemirror';
-import { nord } from '@uiw/codemirror-theme-nord';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { EditorView } from '@codemirror/view';
 
-// Languages and Syntax Highlighting
-import { javascript } from '@codemirror/lang-javascript';
+import EditorPane from './EditorPane';
 
-const FontSizeTheme = EditorView.theme({
-	$: {
-		fontSize: '21pt',
-	},
-});
+const Editor = ({ files, readOnly, className }) => {
+	const isReadOnly = readOnly || false;
 
-const Editor = ({ fileName, toggled, language, className }) => {
-	const defaultToggled = toggled || false;
+	const [activeFile, setActiveFile] = useState(files[0]);
 
-	const [toggle, setToggle] = useState(defaultToggled);
-	const [code, setCode] = useState('console.log("hello world!");');
-	const [languageExt, setLanguageExt] = useState(null);
-	const [extensions, setExtensions] = useState([]);
-
-	useEffect(() => {
-		if (language) {
-			if (language === 'javascript') {
-				import('@codemirror/lang-javascript').then((module) => {
-					setLanguageExt(module.javascript());
-				});
-			}
-
-			if (language === 'java') {
-				import('@codemirror/lang-java').then((module) => {
-					setLanguageExt(module.java());
-				});
-			}
-		}
-	}, [language]);
-
-	const onChange = React.useCallback((value, viewUpdate) => {
-		setCode(value);
-	}, []);
-
-	const codemirrorOptions = {
-		// lineNumbers: false, // Hide line numbers
+	const handleButtonClick = (file) => {
+		setActiveFile(file);
 	};
 
 	return (
 		<div className={className}>
-			<div className="bg-slate-950 px-3 py-3">
-				<div className="flex justify-between">
-					<div>
-						<h4>{fileName}</h4>
-					</div>
-					<div>
-						<button
-							onClick={() => {
-								setToggle(!toggle);
-							}}>
-							Toggle
-						</button>
-					</div>
+			<div className="bg-slate-950 flex select-none">
+				{files.map((file, index) => {
+					const isActive = file === activeFile;
+
+					return (
+						<div
+							className={`flex justify-between items-center ${
+								isActive ? 'active' : ''
+							}`}
+							key={index}>
+							<div className="flex gap-5">
+								<button
+									className={`border-b-4  px-3 text-left py-3 ${
+										isActive
+											? 'bg-blue-900 border-white'
+											: 'bg-800-700 border-gray-700'
+									}`}
+									onClick={() => handleButtonClick(file)}>
+									{file.name}
+								</button>
+							</div>
+						</div>
+					);
+				})}
+				<div>
+					<button className="px-3 text-left py-3">+</button>
 				</div>
 			</div>
-			{(toggle && languageExt) && (
-				<div>
-					<CodeMirror
-						minHeight="300px"
-						className=""
-						value={code}
-						theme={nord}
-						extensions={[languageExt, FontSizeTheme]}
-						onChange={onChange}
-						options={codemirrorOptions}
-					/>
-					<div className="bg-slate-950">
-						<h2>sdf</h2>
-					</div>
-				</div>
-			)}
+
+			<div className="bg-slate-950">
+				<EditorPane file={activeFile} readOnly={isReadOnly} />
+			</div>
 		</div>
 	);
 };

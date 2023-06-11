@@ -4,7 +4,7 @@ import Editor from '../components/Editor';
 
 const Home = () => {
 	return (
-		<div className="container mt-5 h-screen">
+		<div className="container mt-5 min-h-screen">
 			<h2>Home</h2>
 		
 		</div>

@@ -5,20 +5,22 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import SnippetPage from './pages/SnippetPage'
+import CreateSnippet from './pages/CreateSnippet'
 
 // layouts
 import AuthLayout from './layouts/AuthLayout'
 import MainLayout from './layouts/MainLayout'
-import SnippetPage from './pages/SnippetPage'
 
 const App = () => {
   return (
     <div className="dark">
-      <div className="min-h-screen min-w-screen dark:bg-slate-800 text-white">
+      <div className="min-h-screen min-w-screen dark:bg-slate-800 text-white pb-16">
         <Routes>
           <Route path="/" element={<MainLayout />}>
 						<Route path='/' element={<Home/>	} />
 						<Route path="/:user/:snippetId" element={<SnippetPage/>} />
+						<Route path="/create" element={<CreateSnippet/>} />
 					</Route>
 
           <Route path="/auth/*" element={<AuthLayout />}>

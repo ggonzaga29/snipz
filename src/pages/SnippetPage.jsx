@@ -8,6 +8,53 @@ import Editor from '../components/Editor';
 const SnippetPage = () => {
 	const [md, setMd] = useState('');
 
+	const files = [
+		{
+			name: 'Main.java',
+			language: 'java',
+			content: `public class Main {
+	public static void main(String[] args) {
+		EventEmitter emitter = new EventEmitter();
+		emitter.on("eventName", listener);
+		emitter.emit("eventName");
+	}
+}`,
+		},
+
+		{
+			name: 'EventEmitter.java',
+			language: 'java',
+			content: `import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Consumer;
+			
+public class EventEmitter {
+	private HashMap<String, Set<Consumer<Void>>> eventListeners;
+			
+	public EventEmitter() {
+		eventListeners = new HashMap<>();
+	}
+			
+	public void on(String event, Consumer<Void> listener) {
+		Set<Consumer<Void>> listeners = eventListeners.getOrDefault(event, new HashSet<>());
+		listeners.add(listener);
+		eventListeners.put(event, listeners);
+	}
+			
+	public void emit(String event) {
+		Set<Consumer<Void>> listeners = eventListeners.get(event);
+		if (listeners != null) {
+			for (Consumer<Void> listener : listeners) {
+				listener.accept(null);
+			}
+		}
+	}
+}
+			`,
+		},
+	];
+
 	useEffect(() => {
 		fetch('../../data/event_emitter.md')
 			.then((res) => res.text())
@@ -63,7 +110,7 @@ const SnippetPage = () => {
 				<div className="flex justify-between items-center">
 					<div className="flex gap-5">
 						<Link className="bg-slate-500 px-2 py-2">Code</Link>
-						<Link className=" px-2 py-2">Versions</Link>
+						<Link className=" px-2 py-2">History</Link>
 					</div>
 				</div>
 			</div>
@@ -77,11 +124,13 @@ const SnippetPage = () => {
 				<div className="mt-10">
 					<Editor
 						className="mb-5"
-						fileName="Main.js"
-						language="javascript"
-						toggled={true}
+						files={files}
+						readOnly={true}
+						// fileName="Main.js"
+						// language="javascript"
+						// toggled={true}
 					/>
-					<Editor fileName="Editor.java" language="java" />
+					{/* <Editor fileName="Editor.java" language="java" /> */}
 				</div>
 			</div>
 		</div>

@@ -12,14 +12,18 @@
   "dependencies": {
     "@codemirror/lang-java": "^6.0.1",
     "@codemirror/lang-javascript": "^6.1.9",
+    "@codemirror/state": "^6.2.1",
     "@codemirror/view": "^6.13.0",
     "@uiw/codemirror-theme-github": "^4.21.2",
     "@uiw/codemirror-theme-nord": "^4.21.2",
     "@uiw/react-codemirror": "^4.21.2",
+    "@uiw/react-md-editor": "^3.23.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.9.0",
     "react-markdown": "^8.0.7",
-    "react-router-dom": "^6.12.1"
+    "react-router-dom": "^6.12.1",
+    "rehype-sanitize": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

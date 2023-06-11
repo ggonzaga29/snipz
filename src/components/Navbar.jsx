@@ -31,7 +31,7 @@ const Navbar = () => {
 
 				<div className="flex items-center gap-5">
 					<div>
-						<span className="text-3xl cursor-pointer">+</span>
+						<Link to="/create" className="text-3xl cursor-pointer">+</Link>
 					</div>
 					<div className="flex items-center justify-items-end gap-2">
 						<div className="w-12 h-12 rounded-full overflow-hidden">
