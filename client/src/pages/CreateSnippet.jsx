@@ -46,7 +46,7 @@ const CreateSnippet = () => {
 					</div>
 					<div className="mt-3">
 						<h3 className="block mb-1">Code</h3>
-						{/* <Editor /> */}
+						{/* <Edi	tor /> */}
 					</div>
 				</div>
 			</div>
