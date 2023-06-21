@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AuthNavbar = () => {
-  return (
-    <div className="w-full dark:bg-slate-900 dark:text-white h-16 hidden md:block">
-      <div className="h-full flex justify-between items-center px-5">
-        <div className="fully-center">
-          <h1 className="text-3xl font-bold tracking-wide">
-            <Link to="/">snipz</Link>
-          </h1>
-        </div>
-        {/* <div className="h-full">
+	return (
+		<div className="w-full dark:bg-slate-900 dark:text-white h-16 hidden md:block">
+			<div className="h-full flex justify-between items-center px-5">
+				<div className="fully-center">
+					<h1 className="text-3xl font-bold tracking-wide">
+						<Link to="/">snipz</Link>
+					</h1>
+				</div>
+				{/* <div className="h-full">
           <ul className="flex gap-5 h-full">
             <li className="cursor-pointer flex items-center">
               <Link to="/auth/login">Login</Link>
@@ -20,9 +20,9 @@ const AuthNavbar = () => {
             </li>
           </ul>
         </div> */}
-      </div>
-    </div>
-  )
-}
+			</div>
+		</div>
+	);
+};
 
-export default AuthNavbar
+export default AuthNavbar;

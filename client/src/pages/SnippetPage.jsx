@@ -118,7 +118,8 @@ public class EventEmitter {
 				<div>
 					<ReactMarkdown
 						className="Markdown"
-						children={md}></ReactMarkdown>
+						children={md}
+					></ReactMarkdown>
 				</div>
 
 				<div className="mt-10">

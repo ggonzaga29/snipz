@@ -25,7 +25,8 @@ const Editor = ({ files, readOnly, className }) => {
 							className={`flex justify-between items-center ${
 								isActive ? 'active' : ''
 							}`}
-							key={index}>
+							key={index}
+						>
 							<div className="flex gap-5">
 								<button
 									className={`border-b-4  px-3 text-left py-3 ${
@@ -33,7 +34,8 @@ const Editor = ({ files, readOnly, className }) => {
 											? 'bg-blue-900 border-white'
 											: 'bg-800-700 border-gray-700'
 									}`}
-									onClick={() => handleButtonClick(file)}>
+									onClick={() => handleButtonClick(file)}
+								>
 									{file.name}
 								</button>
 							</div>

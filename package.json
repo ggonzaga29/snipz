@@ -1,19 +1,30 @@
 {
-  "name": "snipz",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^8.2.0",
-    "eslint": "^8.43.0",
-    "eslint-config-prettier": "^8.8.0",
-    "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0"
-  }
+	"name": "snipz",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"workspaces": [
+		"client",
+		"server"
+	],
+	"scripts": {
+		"dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+		"build": "concurrently \"cd client && npm run build\" \"cd server && npm run build\"",
+		"start": "concurrently \"cd client && npm run start\" \"cd server && npm run start\"",
+		"test": "concurrently \"cd client && npm run test\" \"cd server && npm run test\"",
+		"prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+		"client": "cd client && npm run dev",
+		"server": "cd server && npm run dev"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"concurrently": "^8.2.0",
+		"eslint": "^8.43.0",
+		"eslint-config-prettier": "^8.8.0",
+		"prettier": "^2.8.8",
+		"prettier-plugin-tailwindcss": "^0.3.0"
+	}
 }

@@ -17,10 +17,13 @@ const EditorPane = ({ file, readOnly }) => {
 	};
 
 	useEffect(() => {
-		if(readOnly)	
-			setExtensions((prevExtensions) => [...prevExtensions, EditorView.editable.of(false), EditorState.readOnly.of(true)]);
+		if (readOnly)
+			setExtensions((prevExtensions) => [
+				...prevExtensions,
+				EditorView.editable.of(false),
+				EditorState.readOnly.of(true),
+			]);
 	}, [readOnly]);
-
 
 	useEffect(() => {
 		if (file.language) {
