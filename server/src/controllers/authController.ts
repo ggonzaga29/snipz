@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import * as EmailValidator from 'email-validator';
 import bcrypt from 'bcrypt';
 
+import { User } from '../types';
+
 import { query } from '../utils/db';
 import UserModel from '../models/UserModel';
 
@@ -23,7 +25,7 @@ export const login = async (
 
 		// if not return error
 		if (user === undefined) {
-			return res.status(500).json({
+			return res.status(404).json({
 				message: 'User does not exist',
 			});
 		}
@@ -42,7 +44,11 @@ export const login = async (
 				});
 			}
 
-			return res.json(user);
+			delete user.password;
+			req.session.user = user;
+			req.session.save(() => {
+				res.status(200).json(req.session.user);
+			});
 		});
 	} catch (err) {
 		next(err);
@@ -50,7 +56,7 @@ export const login = async (
 };
 
 export const register = async (req: Request, res: Response) => {
-	const { email, username, password } = req.body;
+	const { email, username, password, confirmPassword } = req.body;
 
 	// credentials validation (email, username, password)
 	if (!EmailValidator.validate(email)) {
@@ -70,6 +76,13 @@ export const register = async (req: Request, res: Response) => {
 			message: 'Password must be at least 8 characters long',
 		});
 	}
+
+	if (password !== confirmPassword) {
+		return res.status(400).json({
+			message: 'Passwords must be the same',
+		});
+	}
+
 	// if not valid return 400
 
 	// check if user exists
@@ -95,4 +108,28 @@ export const register = async (req: Request, res: Response) => {
 	});
 };
 
-export const logout = (req: Request, res: Response) => {};
+export const logout = (req: Request, res: Response) => {
+	try {
+		req.session.destroy(() => {
+			res.status(204).end();
+		});
+	} catch (err: unknown) {
+		console.log(err);
+		res.status(500).end();
+	}
+};
+
+export const getSession = (req: Request, res: Response) => {
+	try {
+		if (req.session.user) {
+			res.status(200).json(req.session.user);
+		} else {
+			res.status(300).json({
+				message: "no session"
+			});
+		}
+	} catch (err: unknown) {
+		console.log(err);
+		res.status(500).end();
+	}
+};

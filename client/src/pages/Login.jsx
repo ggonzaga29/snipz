@@ -1,7 +1,44 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import api from '../utils/api';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import toastConfig from '../utils/toastConfig';
 
 const Login = () => {
+	const navigate = useNavigate();
+
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			if (!username || !password) {
+				toast.error('Please fill out all fields', toastConfig);
+				return;
+			}
+
+			const res = await api.post('/auth/login', {
+				username,
+				password,
+			});
+
+			if (res.status === 200) {
+				toast.success('success!', toastConfig);
+
+				setUsername('');
+				setPassword('');
+
+				navigate('/');
+			}
+		} catch (err) {
+			toast.error(err.response.data.message, toastConfig);
+		}
+	};
+
 	return (
 		<div className="flex justify-center items-center flex-col">
 			<div className="mt-10 w-full px-5">
@@ -17,11 +54,13 @@ const Login = () => {
 					{/* Inputs */}
 					<div className="mt-6">
 						<div className="flex flex-col mb-5">
-							<span>Username</span>
+							<span>Username or Email</span>
 							<input
 								className="mt-1 py-2 px-3 outline-none dark:bg-slate-600"
 								type="text"
-								placeholder="Enter your username"
+								placeholder="Enter your username or email"
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
 							/>
 						</div>
 						<div className="flex flex-col">
@@ -30,12 +69,16 @@ const Login = () => {
 								className="mt-1 py-2 px-3 outline-none dark:bg-slate-600"
 								type="password"
 								placeholder="Enter your password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
 					</div>
 					{/* Buttons */}
 					<div className="mt-10">
-						<button className="w-full bg-lime-600 py-2">
+						<button
+							className="w-full bg-lime-600 py-2"
+							onClick={handleSubmit}>
 							Log in
 						</button>
 						<div className="text-center my-3">Or</div>
@@ -51,6 +94,19 @@ const Login = () => {
 					</div>
 				</div>
 			</div>
+			{/* Error */}
+			<ToastContainer
+				position="bottom-right"
+				autoClose={5000}
+				hideProgressBar
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="colored"
+			/>
 		</div>
 	);
 };

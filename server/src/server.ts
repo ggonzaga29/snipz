@@ -5,7 +5,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 
-import ErrorHandlerMiddleware from "./middlewares/ErrorHandlerMiddleware";
+import session from "./middleware/session";
 
 import authRouter from "./routes/authRouter";
 
@@ -18,6 +18,7 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(session);
 
 // routes
 app.use("/auth", authRouter);

@@ -29,7 +29,6 @@ export default class UserModel {
 		);
 
 		const row = result.rows[0];
-		console.log(row);
 		
 		return row;
 	}
